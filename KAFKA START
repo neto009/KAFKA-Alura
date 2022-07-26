@@ -1,0 +1,27 @@
+START ZOOKEEPER
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+START KAFKA
+bin/kafka-server-start.sh config/server.properties
+
+CREATE TOPIC KAFKA
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic LOJA_NOVO_PEDIDO
+
+VERIFICAR TOPIC CREATE
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+ENVIAR MSG
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic LOJA_NOVO_PEDIDO
+
+CONSUMIR MSG DO COMEÇO (PRIMEIRA)
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ECOMMERCE_NEW_ORDER --from-beginning
+
+DESCREVER OS TOPICOS
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe
+
+ALTERAR UM TOPICO EXISTENTE(ADICIONAR PARTIÇOES)
+bin/kafka-topics.sh --alter --bootstrap-server localhost:9092 --topic ECOMMERCE_NEW_ORDER --partitions 3
+
+
+ANALISAR GRUPOS DE CONSUMO KAFKA
+bin/kafka-consumer-groups.sh --all-groups --bootstrap-server localhost:9092 --describe
