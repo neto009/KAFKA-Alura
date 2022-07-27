@@ -25,3 +25,9 @@ bin/kafka-topics.sh --alter --bootstrap-server localhost:9092 --topic ECOMMERCE_
 
 ANALISAR GRUPOS DE CONSUMO KAFKA
 bin/kafka-consumer-groups.sh --all-groups --bootstrap-server localhost:9092 --describe
+
+
+config/server.properties
+config/zookeeper.properties
+
+log.dirs  PATH
